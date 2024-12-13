@@ -1,0 +1,1 @@
+# javaspring-test-mode

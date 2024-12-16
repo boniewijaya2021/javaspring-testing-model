@@ -1,5 +1,6 @@
 package com.java.testcode.controller;
 
+import com.java.testcode.dto.BinaryTarget;
 import com.java.testcode.dto.MessageModel;
 import com.java.testcode.service.NumberService;
 import io.swagger.models.auth.In;
@@ -58,6 +59,25 @@ public class NumberController {
         return ResponseEntity.ok(new MessageModel("Angka yang duplikat adalah: " + angkaDuplikat));
     }
 
+    @PostMapping("/mencari-jumlah-terbesar-subarray")
+    public ResponseEntity<MessageModel> maxSubArraySum(@RequestBody int[] nums){
+        int sumArray = nService.maxSubArraySum(nums);
+        return ResponseEntity.ok(new MessageModel("Jumlah terbesar subarray adalah: " + sumArray));
+    }
+
+    @PostMapping("/mencari-binary-target")
+    public ResponseEntity<MessageModel> binarySearch(@RequestBody BinaryTarget binaryTarget){
+        int arrayKe = nService.binarySearch(binaryTarget.getNums(), binaryTarget.getTarget());
+
+        if (arrayKe != -1) {
+           // System.out.println("Target found at index: " + arrayKe);
+            return ResponseEntity.ok(new MessageModel("target ada di array ke :" + arrayKe));
+        } else {
+            //System.out.println("Target not found.");
+            return ResponseEntity.ok(new MessageModel("target tidak di temukan"));
+        }
+
+    }
 
 
 }

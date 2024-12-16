@@ -19,4 +19,12 @@ public class StringService {
         }
         return result.toString().trim();
     }
+
+    public boolean isPalindrome(String input) {
+        int left = 0, right = input.length() - 1;
+        while (left < right) {
+            if (input.charAt(left++) != input.charAt(right--)) return false;
+        }
+        return true;
+    }
 }

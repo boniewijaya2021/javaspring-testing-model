@@ -35,4 +35,10 @@ public class StringController {
         return ResponseEntity.ok(new MessageModel(hasilBalik));
     }
 
+    @PostMapping("/menentukan-kata-palindrom")
+    public ResponseEntity<MessageModel> isPalindrom(@RequestBody String input){
+        Boolean cekPalindrom = sService.isPalindrome(input);
+        return ResponseEntity.ok(new MessageModel(cekPalindrom.toString()));
+    }
+
 }

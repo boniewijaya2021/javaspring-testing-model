@@ -2,6 +2,7 @@ package com.java.testcode.controller;
 
 import com.java.testcode.dto.MessageModel;
 import com.java.testcode.service.NumberService;
+import io.swagger.models.auth.In;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -39,6 +40,23 @@ public class NumberController {
         return ResponseEntity.ok(new MessageModel("Angka kedua terbesar adalah: " + secondLargest));
     }
 
+    @PostMapping("/mencari-urutan-angka-yang-hilang")
+    public ResponseEntity<MessageModel> findMissingNumber(@RequestBody int[] nums){
+        int cekUrutan = nService.findMissingNumber(nums);
+        return ResponseEntity.ok(new MessageModel("Angka yang hilang adalah: " + cekUrutan));
+    }
+
+    @PostMapping("/mencari-urutan-angka-yang-hilang-dimulaidari-0")
+    public ResponseEntity<MessageModel> findMissingNumberFromZero(@RequestBody int[] nums){
+        int angkaHilang = nService.findMissingNumberFromzero(nums);
+        return ResponseEntity.ok(new MessageModel("Angka yang hilang adalah: " + angkaHilang));
+    }
+
+    @PostMapping("/mencari-beberapa-angka-duplikat-dalamarray")
+    public ResponseEntity<MessageModel> findDuplicatesnumbes(@RequestBody int[] nums){
+        List<Integer> angkaDuplikat = nService.findDuplicates(nums);
+        return ResponseEntity.ok(new MessageModel("Angka yang duplikat adalah: " + angkaDuplikat));
+    }
 
 
 

@@ -2,6 +2,11 @@ package com.java.testcode.service;
 
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
 @Service
 public class NumberService {
 
@@ -40,6 +45,32 @@ public class NumberService {
 
         // Kembalikan -1 jika tidak ada angka kedua terbesar yang valid
         return secondLargest == Integer.MIN_VALUE ? -1 : secondLargest;
+    }
+
+    public int findMissingNumber(int[] nums) {
+        //angka wajib di mulai dari angka 1 / positive
+        int n = nums.length + 1;
+        int totalSum = n * (n + 1) / 2;
+        for (int num : nums) totalSum -= num;
+        return totalSum;
+    }
+
+    public int findMissingNumberFromzero(int[] nums) {
+        int n = nums.length; // n adalah jumlah angka yang tersedia, jadi angka sebenarnya adalah 0 sampai n
+        int totalSum = n * (n + 1) / 2; // Jumlah total dari 0 sampai n
+        for (int num : nums) {
+            totalSum -= num; // Kurangi setiap angka yang ada di array
+        }
+        return totalSum; // Sisa dari totalSum adalah angka yang hilang
+    }
+
+    public List<Integer> findDuplicates(int[] nums) {
+        List<Integer> duplicates = new ArrayList<>();
+        Set<Integer> seen = new HashSet<>();
+        for (int num : nums) {
+            if (!seen.add(num)) duplicates.add(num);
+        }
+        return duplicates;
     }
 
 }
